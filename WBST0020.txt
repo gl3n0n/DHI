@@ -1051,33 +1051,33 @@ END;
    ----------
  * Attached PL/SQL Libraries                         
    ----------
-   * Name                                            OFGBSL
-   - Comments                                        
-   * PL/SQL Library Location                         Ofgbsl
-   ----------
    * Name                                            MOD_LIB
-   - Comments                                        
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
    * PL/SQL Library Location                         Mod_Lib
    ----------
    * Name                                            OFGTEL
-   - Comments                                        
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
    * PL/SQL Library Location                         Ofgtel
    ----------
    * Name                                            OFGMES
-   - Comments                                        
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
    * PL/SQL Library Location                         Ofgmes
    ----------
    * Name                                            OFGNAVL
-   - Comments                                        
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
    * PL/SQL Library Location                         Ofgnavl
    ----------
    * Name                                            CALENDAR
-   - Comments                                        
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
    * PL/SQL Library Location                         calendar
    ----------
    * Name                                            MYLIB_STDS
-   - Comments                                        
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
    * PL/SQL Library Location                         MYLIB_STDS
+   ----------
+   * Name                                            OFGBSL
+   * Comments                                        CG$IGNORE_ON_DESIGN_CAPTURE
+   * PL/SQL Library Location                         OFGBSL.PLL
    ----------
  * Blocks                                            
    ----------
@@ -20602,13 +20602,10 @@ BEGIN
 	    RAISE Form_Trigger_Failure;
    END IF;
 
-   if :wb_waybill_hdr.status <> 'CN' then
-      Add_Parameter(pl_id,'cg$waybill_no',TEXT_PARAMETER, :wb_waybill_dtl.waybill_no);
-      Add_Parameter(pl_id,'cg$item_no',TEXT_PARAMETER, :wb_waybill_dtl.item_no);
-      call_form('WBST0025.fmx', NO_HIDE, NO_REPLACE, NO_QUERY_ONLY, pl_id);
-   else
-      msg_alert('You can only load LCL that are with status active.', 'E', TRUE);
-   end if;
+   Add_Parameter(pl_id,'cg$waybill_no',TEXT_PARAMETER, :wb_waybill_dtl.waybill_no);
+   Add_Parameter(pl_id,'cg$item_no',TEXT_PARAMETER, :wb_waybill_dtl.item_no);
+   call_form('WBST0025.fmx', NO_HIDE, NO_REPLACE, NO_QUERY_ONLY, pl_id);
+
 END;
 
        - Fire in Enter-Query Mode                    Yes
